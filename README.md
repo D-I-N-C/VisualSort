@@ -42,6 +42,8 @@ Drawing each value of the array as a rectangle.
 
 ## IN PROGRESS, PROGRAM IS NOT FINAL ##
 
+This branch is on a new fork of the project.
+
 
 
 
