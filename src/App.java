@@ -7,33 +7,23 @@ public class App {
     public static void main(String[] args) throws Exception {
         JFrame f=new JFrame();//making instance of JFrame
         f.setDefaultCloseOperation(3);
-        f.setVisible(true);
-        
-        // JButton button = new JButton("I am a JButton");
-        // JPanel panel = new JPanel();
-        // f.getContentPane().add(panel);
-        // panel.setVisible(true);
-        // panel.setPreferredSize(new Dimension(1500, 20));
-        // panel.add(button);
-        
         
         int numberCount = Integer.parseInt(JOptionPane.showInputDialog("ENTER"));
-        //int numberCount =50;
         
-        // f.getContentPane().setPreferredSize(new Dimension(1500, 750));
-            
         f.getContentPane().setBackground(Color.BLACK);
         ShapeDrawing s = new ShapeDrawing (f.getContentPane(), numberCount);
         s.setPreferredSize(new Dimension(1500, 750));
         f.getContentPane().add(s);
         f.pack();   
         f.setLocationRelativeTo(null);
-            
-        while(true){
-            s.swap(0, 1);
-            f.repaint();
-            TimeUnit.MILLISECONDS.sleep(60);
-        }
+        f.setVisible(true);
+        
+        
+        // while(true){
+        //     Sorter.swap(s.numbers,0,1);
+        //     f.repaint();
+        //     TimeUnit.MILLISECONDS.sleep(60);
+        // }
     }
 }
 class ShapeDrawing extends JComponent {
@@ -55,12 +45,6 @@ class ShapeDrawing extends JComponent {
         for (int i = 0; i < numberCount; i++) {
             numbers.add(i+1);
         }
-    }
-
-    public void swap(int index1, int index2){
-        int temp = numbers.get(index1);
-        numbers.set(index1, numbers.get(index2));
-        numbers.set(index2,temp);
     }
     
     public void paint(Graphics g)
