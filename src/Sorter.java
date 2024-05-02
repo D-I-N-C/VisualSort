@@ -1,11 +1,10 @@
 import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Sorter{
 
-    public static void bubbleSort(List<Integer> numbers, JFrame f, ShapeDrawing s)throws Exception{
+    public static void bubbleSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s)throws Exception{
         boolean changed = true;
 
         while(changed) {
@@ -31,7 +30,7 @@ public class Sorter{
         }
     }
     
-    public static void swap(List<Integer> numbers,int index1, int index2, ShapeDrawing s){
+    public static void swap(ArrayList<Integer> numbers,int index1, int index2, ShapeDrawing s){
         int temp = numbers.get(index1);
         numbers.set(index1, numbers.get(index2));
         numbers.set(index2,temp);
@@ -40,7 +39,7 @@ public class Sorter{
         s.index2 = index2;
     }
 
-    public static boolean isGreaterThan(List<Integer> numbers, int index1, int index2, ShapeDrawing s){
+    public static boolean isGreaterThan(ArrayList<Integer> numbers, int index1, int index2, ShapeDrawing s){
         s.isCompared = true;
         s.index1 = index1;
         s.index2 = index2;
