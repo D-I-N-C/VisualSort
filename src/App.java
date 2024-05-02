@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.concurrent.TimeUnit;
 import java.util.Collections; 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class App {
         f.setLocationRelativeTo(null);
         f.setVisible(true);
         
-        Sorter.bubbleSort(s.numbers, f);
+        Sorter.bubbleSort(s.numbers, f, s);
 
     }
 
@@ -27,10 +26,19 @@ class ShapeDrawing extends JComponent {
     Container contentPane;
     int numberCount;
     ArrayList<Integer> numbers;
+    boolean isSwapped;
+    boolean isCompared;
+    boolean isSorted;
+    int sortedIndex;
+    int index1;
+    int index2;
 
     public ShapeDrawing(Container contentPane,int numberCount){
         this.contentPane = contentPane;
         setNumberCount(numberCount);
+        isSwapped = false;
+        isCompared = false;
+        isSorted = false;
     }
     
     public int getNumberCount(){
@@ -56,7 +64,19 @@ class ShapeDrawing extends JComponent {
             int x2 = dim.width*(i+1)/numberCount;
             int width = Math.max(1,x2-x1);
             int h = dim.height*(numbers.get(i))/(numberCount + 1);
-            g2.setColor(Color.WHITE);
+            if (isSorted && i <= sortedIndex) {
+                g2.setColor(Color.GREEN);
+            }
+            else if (isSwapped && (i==index1 || i==index2)) {
+                g2.setColor(Color.YELLOW);
+            }
+            else if (isCompared && (i==index1 || i==index2)) {
+                g2.setColor(Color.RED);
+            }
+            else{
+                g2.setColor(Color.WHITE);
+            }
+            
             g2.fillRect(x1, dim.height - h, width, h);
             if (numberCount <= dim.width/5) { //dont draw outlines if the window isn't wide enough
                 g2.setColor(Color.BLACK);
