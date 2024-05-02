@@ -1,15 +1,15 @@
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
-
+import java.util.Collections; 
 import javax.swing.*;
 import java.util.ArrayList;
 public class App {
     public static void main(String[] args) throws Exception {
         JFrame f=new JFrame();//making instance of JFrame
         f.setDefaultCloseOperation(3);
-        
+        //promting for size of the arraylist
         int numberCount = Integer.parseInt(JOptionPane.showInputDialog("ENTER"));
-        
+        //settings for JFrame
         f.getContentPane().setBackground(Color.BLACK);
         ShapeDrawing s = new ShapeDrawing (f.getContentPane(), numberCount);
         s.setPreferredSize(new Dimension(1500, 750));
@@ -18,18 +18,16 @@ public class App {
         f.setLocationRelativeTo(null);
         f.setVisible(true);
         
-        
-        // while(true){
-        //     Sorter.swap(s.numbers,0,1);
-        //     f.repaint();
-        //     TimeUnit.MILLISECONDS.sleep(60);
-        // }
+        Sorter.bubbleSort(s.numbers, f);
+
     }
+
 }
 class ShapeDrawing extends JComponent {
     Container contentPane;
     int numberCount;
     ArrayList<Integer> numbers;
+
     public ShapeDrawing(Container contentPane,int numberCount){
         this.contentPane = contentPane;
         setNumberCount(numberCount);
@@ -45,12 +43,14 @@ class ShapeDrawing extends JComponent {
         for (int i = 0; i < numberCount; i++) {
             numbers.add(i+1);
         }
+        Collections.shuffle(numbers); //randomizes arraylist
     }
     
     public void paint(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g;
         Dimension dim = contentPane.getSize();
+        //draws bars on screen and scales to window size
         for(int i = 0; i < numberCount ; i += 1){
             int x1 = dim.width*i/numberCount;
             int x2 = dim.width*(i+1)/numberCount;
