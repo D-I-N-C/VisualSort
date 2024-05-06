@@ -1,6 +1,4 @@
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Collections;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -29,44 +27,7 @@ public class App {
         // calling the sorter based on user choice
         Sorter sorter = new Sorter();
         sorter.chosenSort(fDialog.choice, s.numbers, f, s);
-        Restart restart = new Restart(f);
-        restart.r();
     }
-}
-
-class Restart implements ActionListener{
-    JButton btn;
-    JFrame f;
-    
-    public Restart(JFrame f){
-        this.f = f;
-    }
-
-    public void r (){
-        f.setLayout(null);
-        int w = f.getWidth() / 10;
-        int h = f.getHeight() / 10;
-        Dimension size = new Dimension(w,h);
-        btn = new JButton("Restart?");
-        f.add(btn);
-        btn.addActionListener(this); // ActionListener to tell when button is pressed
-        btn.setSize(size);
-        f.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btn) {
-            f.dispose();
-            App.s.isSorted = false;
-            try {
-                App.main(null);
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
-        }
-    }
-    
 }
 
 class ShapeDrawing extends JComponent {
