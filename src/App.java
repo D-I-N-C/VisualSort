@@ -1,10 +1,12 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Collections;
 import javax.swing.*;
 import java.util.ArrayList;
 
 public class App {
-
+    static ShapeDrawing s;
     public static void main(String[] args) throws Exception {
         // promting for size of the arraylist
         int numberCount = Integer.parseInt(JOptionPane.showInputDialog("Choose array length"));
@@ -18,15 +20,53 @@ public class App {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.getContentPane().setBackground(Color.BLACK);
         // passing info of contentPane to ShapeDrawing
-        ShapeDrawing s = new ShapeDrawing(f.getContentPane(), numberCount);
+        s = new ShapeDrawing(f.getContentPane(), numberCount);
         s.setPreferredSize(new Dimension(1500, 750));
         f.getContentPane().add(s);
         f.pack();
         f.setLocationRelativeTo(null);
         f.setVisible(true);
         // calling the sorter based on user choice
-        Sorter.chosenSort(fDialog.choice, s.numbers, f, s);
+        Sorter sorter = new Sorter();
+        sorter.chosenSort(fDialog.choice, s.numbers, f, s);
+        Restart restart = new Restart(f);
+        restart.r();
     }
+}
+
+class Restart implements ActionListener{
+    JButton btn;
+    JFrame f;
+    
+    public Restart(JFrame f){
+        this.f = f;
+    }
+
+    public void r (){
+        f.setLayout(null);
+        int w = f.getWidth() / 10;
+        int h = f.getHeight() / 10;
+        Dimension size = new Dimension(w,h);
+        btn = new JButton("Restart?");
+        f.add(btn);
+        btn.addActionListener(this); // ActionListener to tell when button is pressed
+        btn.setSize(size);
+        f.setVisible(true);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btn) {
+            f.dispose();
+            App.s.isSorted = false;
+            try {
+                App.main(null);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+    
 }
 
 class ShapeDrawing extends JComponent {

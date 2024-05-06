@@ -1,34 +1,36 @@
 import java.util.concurrent.TimeUnit;
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Sorter {
+
+public class Sorter{
+    static JButton btn;
     // Delay btween actions in milliseconds
     static int timeout = 10;
     // Avalible options of sorting AGLS for dropdown menu
     final static String[] ALGS = { "Bubble Sort", "Selection Sort", "Insertion Sort", "Heap Sort", "BOGO Sort" };
     // runs sorting ALG based on user choice
-    public static void chosenSort(int choice, ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
+    public void chosenSort(int choice, ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
         switch (choice) {
             case 0:
-                Sorter.bubbleSort(s.numbers, f, s);
+                bubbleSort(s.numbers, f, s);
                 break;
 
             case 1:
-                Sorter.selectionSort(s.numbers, f, s);
+                selectionSort(s.numbers, f, s);
                 break;
 
             case 2:
-                Sorter.insertionSort(s.numbers, f, s);
+                insertionSort(s.numbers, f, s);
                 break;
 
             case 3:
-                Sorter.heapSort(s.numbers, f, s);
+                heapSort(s.numbers, f, s);
                 break;
 
             case 4:
-                Sorter.bogoSort(s.numbers, f, s);
+                bogoSort(s.numbers, f, s);
                 break;
 
             default: 
@@ -42,7 +44,7 @@ public class Sorter {
      *swaping numbers if the number to the right
      *of the current index is smaller than itself
      */ 
-    public static void bubbleSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
+    public void bubbleSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
         boolean changed = true;
 
         while (changed) {
@@ -59,14 +61,7 @@ public class Sorter {
             }
         }
 
-        s.isSorted = true;
-        s.isSwapped = false;
-        s.isCompared = false;
-        for (int i = 0; i < numbers.size(); i++) {
-            s.sortedIndex = i;
-            f.repaint();
-            TimeUnit.MILLISECONDS.sleep(timeout);
-        }
+        sorted(numbers, s, f);
     }
 
     /*
@@ -76,7 +71,7 @@ public class Sorter {
      * (no new array is created, but rather the array is divided into an unsorted and sorted part)
      * Repeat until sorted
      */
-    public static void selectionSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
+    public void selectionSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
 
         for (int i = 0; i < numbers.size() - 1; i++) {
 
@@ -98,14 +93,7 @@ public class Sorter {
             TimeUnit.MILLISECONDS.sleep(timeout);
         }
 
-        s.isSorted = true;
-        s.isSwapped = false;
-        s.isCompared = false;
-        for (int i = 0; i < numbers.size(); i++) {
-            s.sortedIndex = i;
-            f.repaint();
-            TimeUnit.MILLISECONDS.sleep(timeout);
-        }
+        sorted(numbers, s, f);
     }
 
     /*
@@ -114,7 +102,7 @@ public class Sorter {
      * repeat this process until there are no values left in the original unsorted portion
      * (no new array is created, but rather the array is divided into an unsorted and sorted part)
      */
-    public static void insertionSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
+    public void insertionSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
 
         int i = 1;
         while (i < numbers.size()) {
@@ -138,21 +126,14 @@ public class Sorter {
             i += 1;
         }
 
-        s.isSorted = true;
-        s.isSwapped = false;
-        s.isCompared = false;
-        for (int k = 0; k < numbers.size(); k++) {
-            s.sortedIndex = k;
-            f.repaint();
-            TimeUnit.MILLISECONDS.sleep(timeout);
-        }
+        sorted(numbers, s, f);
     }
     /*
      * implements heap sort
      * idk how this works :D
      * https://en.wikipedia.org/wiki/Heapsort
      */
-    public static void heapSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
+    public void heapSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
 
         int start = numbers.size() / 2;
         int end = numbers.size();
@@ -193,21 +174,14 @@ public class Sorter {
             }
         }
 
-        s.isSorted = true;
-        s.isSwapped = false;
-        s.isCompared = false;
-        for (int i = 0; i < numbers.size(); i++) {
-            s.sortedIndex = i;
-            f.repaint();
-            TimeUnit.MILLISECONDS.sleep(timeout);
-        }
+        sorted(numbers, s, f);
     }
 
     /*
      * implements BOGO sort (stuupid sort)
      * Randomizes the array until sorted
      */
-    public static void bogoSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
+    public void bogoSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
         boolean sorted = false;
 
         while (s.isSorted == false) {
@@ -229,13 +203,7 @@ public class Sorter {
             f.repaint();
         }
 
-        s.isSorted = true;
-        s.isCompared = false;
-        for (int i = 0; i < numbers.size(); i++) {
-            s.sortedIndex = i;
-            f.repaint();
-            TimeUnit.MILLISECONDS.sleep(timeout);
-        }
+        sorted(numbers, s, f);
     }
 
     //swaping funtion
@@ -254,5 +222,15 @@ public class Sorter {
         s.index2 = index2;
         return (numbers.get(index1) > numbers.get(index2));
     }
-
-}
+    
+    public void sorted(ArrayList<Integer> numbers, ShapeDrawing s, JFrame f) throws Exception{
+        s.isSorted = true;
+        s.isSwapped = false;
+        s.isCompared = false;
+        for (int i = 0; i < numbers.size(); i++) {
+            s.sortedIndex = i;
+            f.repaint();
+            TimeUnit.MILLISECONDS.sleep(timeout);
+        }
+    }
+} 
