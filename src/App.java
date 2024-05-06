@@ -17,7 +17,7 @@ public class App {
         // settings for JFrame
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.getContentPane().setBackground(Color.BLACK);
-        // 
+        // passing info of contentPane to ShapeDrawing
         ShapeDrawing s = new ShapeDrawing(f.getContentPane(), numberCount);
         s.setPreferredSize(new Dimension(1500, 750));
         f.getContentPane().add(s);
@@ -52,6 +52,7 @@ class ShapeDrawing extends JComponent {
         return numberCount;
     }
 
+    // populates ArrayList
     public void setNumberCount(int numberCount) {
         this.numberCount = numberCount;
         numbers = new ArrayList<>(numberCount);
@@ -70,6 +71,7 @@ class ShapeDrawing extends JComponent {
             int x2 = dim.width * (i + 1) / numberCount;
             int width = Math.max(1, x2 - x1);
             int h = dim.height * (numbers.get(i)) / (numberCount + 1);
+            // colors of bars depending on if compared, swaped, sorted, or none
             if (isSorted && i <= sortedIndex) {
                 g2.setColor(Color.GREEN);
             } else if (isSwapped && (i == index1 || i == index2)) {
@@ -79,7 +81,7 @@ class ShapeDrawing extends JComponent {
             } else {
                 g2.setColor(Color.WHITE);
             }
-
+            // drawing the bars
             g2.fillRect(x1, dim.height - h, width, h);
             if (numberCount <= dim.width / 5) { // dont draw outlines if the window isn't wide enough
                 g2.setColor(Color.BLACK);

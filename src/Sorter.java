@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Sorter {
-
+    // Delay btween actions in milliseconds
     static int timeout = 10;
+    // Avalible options of sorting AGLS for dropdown menu
     final static String[] ALGS = { "Bubble Sort", "Selection Sort", "Insertion Sort", "Heap Sort", "BOGO Sort" };
-
+    // runs sorting ALG based on user choice
     public static void chosenSort(int choice, ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
         switch (choice) {
             case 0:
@@ -30,11 +31,17 @@ public class Sorter {
                 Sorter.bogoSort(s.numbers, f, s);
                 break;
 
-            default:
+            default: 
                 break;
         }
     }
 
+    /*
+     *implements bubble sort 
+     *scans left to right over the array
+     *swaping numbers if the number to the right
+     *of the current index is smaller than itself
+     */ 
     public static void bubbleSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
         boolean changed = true;
 
@@ -51,6 +58,7 @@ public class Sorter {
                 TimeUnit.MILLISECONDS.sleep(timeout);
             }
         }
+
         s.isSorted = true;
         s.isSwapped = false;
         s.isCompared = false;
@@ -61,6 +69,13 @@ public class Sorter {
         }
     }
 
+    /*
+     * implements selection sort
+     * scrolls through each element of the array, and finds the lowest value
+     * the lowest value of the original array is put into the next position of sorted portion of the array
+     * (no new array is created, but rather the array is divided into an unsorted and sorted part)
+     * Repeat until sorted
+     */
     public static void selectionSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
 
         for (int i = 0; i < numbers.size() - 1; i++) {
@@ -93,6 +108,12 @@ public class Sorter {
         }
     }
 
+    /*
+     *implements insertion sort 
+     * scrolls through each element from the unsorted original array and "inserts" it into its respective place on the a new sorted list.
+     * repeat this process until there are no values left in the original unsorted portion
+     * (no new array is created, but rather the array is divided into an unsorted and sorted part)
+     */
     public static void insertionSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
 
         int i = 1;
@@ -126,7 +147,11 @@ public class Sorter {
             TimeUnit.MILLISECONDS.sleep(timeout);
         }
     }
-
+    /*
+     * implements heap sort
+     * idk how this works :D
+     * https://en.wikipedia.org/wiki/Heapsort
+     */
     public static void heapSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
 
         int start = numbers.size() / 2;
@@ -178,6 +203,10 @@ public class Sorter {
         }
     }
 
+    /*
+     * implements BOGO sort (stuupid sort)
+     * Randomizes the array until sorted
+     */
     public static void bogoSort(ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
         boolean sorted = false;
 
@@ -209,17 +238,18 @@ public class Sorter {
         }
     }
 
+    //swaping funtion
     public static void swap(ArrayList<Integer> numbers, int index1, int index2, ShapeDrawing s) {
         int temp = numbers.get(index1);
         numbers.set(index1, numbers.get(index2));
         numbers.set(index2, temp);
-        s.isSwapped = true;
+        s.isSwapped = true; // flag to recolor the bar
         s.index1 = index1;
         s.index2 = index2;
     }
-
+    //comparison funtion
     public static boolean isGreaterThan(ArrayList<Integer> numbers, int index1, int index2, ShapeDrawing s) {
-        s.isCompared = true;
+        s.isCompared = true; // flag to recolor the bar
         s.index1 = index1;
         s.index2 = index2;
         return (numbers.get(index1) > numbers.get(index2));
