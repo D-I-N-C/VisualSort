@@ -8,18 +8,23 @@ public class App {
     public static void main(String[] args) throws Exception {
         // promting for size of the arraylist
         int numberCount = Integer.parseInt(JOptionPane.showInputDialog("Choose array length"));
+        // promting for delay between actions
+        Sorter.timeout = Integer.parseInt(JOptionPane.showInputDialog("Choose delay time in milliseconds \n(between 5 - 25ms is best)"));
+        // creating instance of JFrame with dropdown menu to select sorting ALG
         Frame fDialog = new Frame();
-        // settings for JFrame
+        // creating instance of JFrame for visulizer
         JFrame f = new JFrame();
+        // settings for JFrame
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.getContentPane().setBackground(Color.BLACK);
+        // 
         ShapeDrawing s = new ShapeDrawing(f.getContentPane(), numberCount);
         s.setPreferredSize(new Dimension(1500, 750));
         f.getContentPane().add(s);
         f.pack();
         f.setLocationRelativeTo(null);
         f.setVisible(true);
-
+        // calling the sorter based on user choice
         Sorter.chosenSort(fDialog.choice, s.numbers, f, s);
     }
 }

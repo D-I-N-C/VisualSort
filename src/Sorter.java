@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class Sorter {
 
-    static int timeout = 50;
+    static int timeout = 10;
     final static String[] ALGS = { "Bubble Sort", "Selection Sort", "Insertion Sort", "Heap Sort", "BOGO Sort" };
 
     public static void chosenSort(int choice, ArrayList<Integer> numbers, JFrame f, ShapeDrawing s) throws Exception {
