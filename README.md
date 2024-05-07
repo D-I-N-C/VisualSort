@@ -1,48 +1,41 @@
-## Usage ##
+# VisualSort v.1 #
 
-SortVisualizer v_._
+This app can help users understand how a sort works in various array sizes, with GUI elements to indicate actions made during the sorting process. It can also be used just for fun.
 
-Welcome to Sorting Visualizer. This app can help users understand what their sorts are doing through visual aid, stepping, and stats logging. It can also be used just for fun.
+## How to Use ##
 
-# Base Features #
+![image](assets/choose-len-pic.jpg)
 
-Upon entering the program, you will be prompted to enter an array length. This will generate an array with the specified length, but randomly ordered. You can now begin the sort by pressing "Start". The sort will be completed before the runtime of the visualizer so the visualizer can run more smoothly. Now, the visualizer GUI will open, with each bar representing a value, directly correlated to it's height. Upon the sort starting, the bars will begin moving as they sort. A bar highlighted in red indicates the position of the -index pointer- (what value the algorithm is using to compare to) before the swap is made. The user can scale the time and pause the progress as they wish to view specific steps more carefully. Upon completing, the visualizer will highlight each value in green, or scan through the length of the array and progressively scan the chart green, if the algorithm includes a final pass to verify the sorted list. The program is now finished and will display the stats of the sort, and prompt the user to replay the program or close it.
+Upon entering the program, you will be prompted to enter an array length. This will generate an array with the specified length, but randomly ordered.
 
-# Upcoming Updates # 
+![image](assets/delay-time-pic.jpg)
 
-NOTE : Future updates may be implemented in another framework due to graphical limitations of swing. 
+After confirming the array length, you'll also enter the delay between each action in milliseconds(ms). An action can be a swap being performed, or a comparison being made. The lower the delay time, the faster the sort will complete.
 
-For users looking for the simplest interatable example, A visual aid with moving digits on a horizontal plane may be added. This would show what each value is doing, and give visual aids relevant to what the algorithm is doing (Bubble sort will highlight the two indecies, and insertion sort will seperate the sublists, along with showing the index and min value). A raw stats tab may be added a live detailed view, along with an output log. 
+![image](assets/dropdown-list-pic.jpg)
 
-# Source Code Overview # 
+A dropdown list will popup after selecting the **time delay**. All of the sorting algorithms avaliable are in the drop down menu, and can be selected by the user. Once you've selected your choice, press "OK" and the sorting will begin. 
 
-![image](https://github.com/D-I-N-C/SortingVisualizer/assets/17088609/66cc0976-9950-4c2a-8ff3-d56a27648244)
+## Visual Indicators ##
 
-"f" is the new JFrame instance in main to allow easier and cleaner use of the JFrame proccess. Make JFrame calls using this instance. 
+### Graphical Interface ###
 
-![image](https://github.com/D-I-N-C/SortingVisualizer/assets/17088609/3233104e-3891-4c1d-bc8e-0598e480e1bf)
+The values of the array are represented as vertical bars with a high directly correlated with the index's value. The visual indicators in the program are explained below.
 
-Initialize the background environment
+![image](assets/comparison.jpg)
 
-![image](https://github.com/D-I-N-C/SortingVisualizer/assets/17088609/7d0c8444-4344-44e0-a910-055109abf223)
+A bar highlighted in **red** indicates the position of the **index pointer**  before the swap is made. The other bar highlighted in red is the other value being compared to by the _index pointer_.
 
-The documentator has no idea what is going on here. Please come back later...
+>[!NOTE]
+>The **Index Pointer** refers to the position in the array that is currently selected (For Example, in this array,   `[0, 2, 3, 5]`, the value `2` is in the 2nd position of the array, so the index pointer position is `1`, (array positions >start at 0) 
 
-![image](https://github.com/D-I-N-C/SortingVisualizer/assets/17088609/99b329c6-9189-4871-bd3b-bfb15c7a287f)
+![image](assets/swap-made.jpg)
 
-Fetch the array length selected by the user
+Once a comparison requiring a swap has been made, a _swap_ can occur, which is represented by the values turning **yellow**
 
-![image](https://github.com/D-I-N-C/SortingVisualizer/assets/17088609/d17b5871-b396-4ad8-abdd-7e12c36573fb)
+![image](assets/sorted-array-green.jpg)
 
-Make an array with the specific length specified by the user
-
-![image](https://github.com/D-I-N-C/SortingVisualizer/assets/17088609/e43a9710-e95b-4776-8ec5-87b9dc195b28)
-
-Drawing each value of the array as a rectangle.
-
-## IN PROGRESS, PROGRAM IS NOT FINAL ##
-
-This branch is on a new fork of the project.
+Upon completing, the visualizer will highlight each value in **green**, or scan through the length of the array and progressively scan the chart green. The sort is now completed, and the program is halted. Close the window to exit.
 
 
 
