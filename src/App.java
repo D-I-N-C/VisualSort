@@ -5,11 +5,13 @@ import java.util.ArrayList;
 
 public class App {
     static ShapeDrawing s;
+
     public static void main(String[] args) throws Exception {
         // promting for size of the arraylist
         int numberCount = Integer.parseInt(JOptionPane.showInputDialog("Choose array length"));
         // promting for delay between actions
-        Sorter.timeout = Integer.parseInt(JOptionPane.showInputDialog("Choose delay time in milliseconds \n(between 5 - 25ms is best)"));
+        Sorter.timeout = Integer.parseInt(
+                JOptionPane.showInputDialog("Choose delay time in milliseconds \n(~20ms is best)"));
         // creating instance of JFrame with dropdown menu to select sorting ALG
         Frame fDialog = new Frame();
         // creating instance of JFrame for visulizer
@@ -25,8 +27,7 @@ public class App {
         f.setLocationRelativeTo(null);
         f.setVisible(true);
         // calling the sorter based on user choice
-        Sorter sorter = new Sorter();
-        sorter.chosenSort(fDialog.choice, s.numbers, f, s);
+        Sorter.chosenSort(fDialog.choice, s.numbers, f, s);
     }
 }
 
